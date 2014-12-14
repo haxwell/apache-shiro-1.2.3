@@ -95,6 +95,20 @@ public class ReflectionBuilder {
         return (T) bean;
     }
 
+    private String getValue(String str) {
+    	String rtn = str;
+    	
+    	int beginIndex = str.indexOf("${");
+    	int endIndex = str.indexOf("}");
+    	
+    	if ((beginIndex == 0) && (endIndex == str.length() - 1)) {
+    		String propertyName = str.substring(2, endIndex);
+    		rtn = System.getProperty(propertyName);
+    	}
+    	
+    	return rtn;
+    }
+
     @SuppressWarnings({"unchecked"})
     public Map<String, ?> buildObjects(Map<String, String> kvPairs) {
         if (kvPairs != null && !kvPairs.isEmpty()) {
@@ -116,12 +130,12 @@ public class ReflectionBuilder {
 
             // Create all instances
             for (Map.Entry<String, String> entry : instanceMap.entrySet()) {
-                createNewInstance((Map<String, Object>) objects, entry.getKey(), entry.getValue());
+                createNewInstance((Map<String, Object>) objects, entry.getKey(), getValue(entry.getValue()));
             }
 
             // Set all properties
             for (Map.Entry<String, String> entry : propertyMap.entrySet()) {
-                applyProperty(entry.getKey(), entry.getValue(), objects);
+                applyProperty(entry.getKey(), getValue(entry.getValue()), objects);
             }
         }
 
