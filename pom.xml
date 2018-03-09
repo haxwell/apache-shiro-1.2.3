@@ -81,7 +81,7 @@
              modules' OSGi metadata: -->
         <ehcache.version>2.5.0</ehcache.version>
         <hsqldb.version>1.8.0.7</hsqldb.version>
-        <jdk.version>1.5</jdk.version>
+        <jdk.version>1.6</jdk.version>
         <jetty.version>6.1.26</jetty.version>
         <!-- Don't change this version without also changing the shiro-quartz and shiro-features
              modules' OSGi metadata: -->
@@ -901,7 +901,7 @@
                 <version>2.5</version>
                 <configuration>
                     <sourceEncoding>utf-8</sourceEncoding>
-                    <targetJdk>1.5</targetJdk>
+                    <targetJdk>1.6</targetJdk>
                 </configuration>
             </plugin>
             <plugin>
